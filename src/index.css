@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base; 
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gold: #D4AF37;
+  --matte-black: #111111;
+  --soft-bg: #FCFCFC;
+}
+
+@layer base {
+  body {
+    @apply font-['Inter'] bg-[#FCFCFC] text-gray-800 antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-['Poppins'] text-[#111111];
+  }
+}
+
+@layer utilities {
+  .premium-shadow {
+    box-shadow: 0 10px 40px -10px rgba(0,0,0,0.04);
+  }
+}
+
+/* Hide sidebar during print for invoice page */
+@media print {
+  aside {
+    display: none !important;
+  }
+  main {
+    padding: 0 !important;
+  }
+}
