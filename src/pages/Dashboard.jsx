@@ -290,7 +290,7 @@ const Dashboard = () => {
           <div className="absolute -top-10 -right-10 w-48 h-48 bg-[#D4AF37] blur-[80px] opacity-30 rounded-full"></div>
           
           <div className="relative z-10 text-center sm:text-left">
-             <h3 className="text-2xl font-bold tracking-tight font-['Poppins']">Quick Operations</h3>
+             <h3 className="text-2xl text-[#ffff] font-bold tracking-tight font-['Poppins']">Quick Operations</h3>
              <p className="text-gray-400 mt-1 font-medium">Instantly access core billing tools</p>
           </div>
           <div className="flex gap-4 relative z-10 w-full sm:w-auto">

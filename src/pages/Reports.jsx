@@ -105,6 +105,9 @@ const Reports = () => {
         if (!isExpense && item.invoiceDate) {
           const [year, month, day] = item.invoiceDate.split('-');
           dateVal = new Date(year, month - 1, day).getTime();
+        } else if (isExpense && item.expenseDate) {
+          const [year, month, day] = item.expenseDate.split('-');
+          dateVal = new Date(year, month - 1, day).getTime();
         }
         const d = new Date(dateVal);
         let isCurrent = false;
@@ -175,7 +178,7 @@ const Reports = () => {
     // 3. Process Product Quantities and Chart Data
     currentSales.forEach((sale) => {
       // Chart grouping
-      let saleDateVal = sale.createdAt || Date.now();
+      let saleDateVal = sale.createdAt || 0();
       if (sale.invoiceDate) {
         const [year, month, day] = sale.invoiceDate.split('-');
         saleDateVal = new Date(year, month - 1, day).getTime();
@@ -203,7 +206,7 @@ const Reports = () => {
             productMap[p.productId] = { id: p.productId, name: p.productName, category: p.category, qty: 0, revenue: 0 };
           }
           productMap[p.productId].qty += qty;
-          productMap[p.productId].revenue += qty * (Number(p.price) || 0);
+          productMap[p.productId].revenue += Number(p.total || 0);
         }
       });
     });
@@ -261,7 +264,7 @@ const Reports = () => {
       const pMatch = (sale.products || []).find(p => p.productId === targetId);
       if (pMatch) {
         const qty = Number(pMatch.quantity) || 0;
-        const rev = qty * (Number(pMatch.price) || 0);
+        const rev = Number(pMatch.total || 0);
         totalQty += qty;
         totalRev += rev;
         chartMap[dateStr].Qty += qty;

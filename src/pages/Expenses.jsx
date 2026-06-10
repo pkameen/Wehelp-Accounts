@@ -19,6 +19,12 @@ const Expenses = () => {
   const [amount, setAmount] =
     useState("");
 
+  const [expenseDate, setExpenseDate] = useState(() => {
+    const d = new Date();
+    const offset = d.getTimezoneOffset() * 60000;
+    return new Date(d.getTime() - offset).toISOString().split('T')[0];
+  });
+
   const [expenses, setExpenses] =
     useState([]);
 
@@ -66,7 +72,8 @@ const Expenses = () => {
 
       if (
         !title ||
-        !amount
+        !amount ||
+        !expenseDate
       ) {
         toast.error(
           "Please fill all fields"
@@ -86,6 +93,7 @@ const Expenses = () => {
           await update(expenseRef, {
             title,
             amount: Number(amount),
+            expenseDate,
           });
           toast.success("Expense Updated");
           setEditId(null);
@@ -95,6 +103,7 @@ const Expenses = () => {
             {
               title,
               amount: Number(amount),
+              expenseDate,
               date: new Date().toLocaleDateString(),
               createdAt: Date.now(),
             }
@@ -104,6 +113,9 @@ const Expenses = () => {
 
         setTitle("");
         setAmount("");
+        const d = new Date();
+        const offset = d.getTimezoneOffset() * 60000;
+        setExpenseDate(new Date(d.getTime() - offset).toISOString().split('T')[0]);
       } catch (error) {
         toast.error(
           editId ? "Failed to update expense" : "Failed to add expense"
@@ -118,6 +130,15 @@ const Expenses = () => {
   const handleEdit = (expense) => {
     setTitle(expense.title);
     setAmount(expense.amount);
+    if (expense.expenseDate) {
+      setExpenseDate(expense.expenseDate);
+    } else if (expense.createdAt) {
+      const d = new Date(expense.createdAt);
+      const offset = d.getTimezoneOffset() * 60000;
+      setExpenseDate(new Date(d.getTime() - offset).toISOString().split('T')[0]);
+    } else {
+      setExpenseDate("");
+    }
     setEditId(expense.id);
   };
 
@@ -171,40 +192,40 @@ const Expenses = () => {
         {/* Add Expense Form */}
         <div className="bg-white rounded-3xl shadow-md p-6 mb-6">
           <form
-            onSubmit={
-              handleExpense
-            }
-            className="grid md:grid-cols-3 gap-4"
+            onSubmit={handleExpense}
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-4"
           >
             <input
               type="text"
-              placeholder="Expense Title"
+              placeholder="Expense Title *"
               value={title}
-              onChange={(e) =>
-                setTitle(
-                  e.target.value
-                )
-              }
-              className="border p-4 rounded-2xl outline-none"
+              onChange={(e) => setTitle(e.target.value)}
+              className="w-full bg-gray-50 hover:bg-gray-100/50 border border-transparent focus:bg-white focus:border-[#D4AF37]/40 rounded-2xl text-sm font-semibold text-[#111] outline-none transition-all p-4"
+              required
             />
 
             <input
               type="number"
-              placeholder="Amount"
+              placeholder="Amount (₹) *"
               value={amount}
-              onChange={(e) =>
-                setAmount(
-                  e.target.value
-                )
-              }
-              className="border p-4 rounded-2xl outline-none"
+              onChange={(e) => setAmount(e.target.value)}
+              className="w-full bg-gray-50 hover:bg-gray-100/50 border border-transparent focus:bg-white focus:border-[#D4AF37]/40 rounded-2xl text-sm font-semibold text-[#111] outline-none transition-all p-4"
+              required
             />
 
-            <div className="flex gap-2">
+            <input 
+              type="date" 
+              value={expenseDate} 
+              onChange={(e) => setExpenseDate(e.target.value)} 
+              className="w-full bg-gray-50 hover:bg-gray-100/50 border border-transparent focus:bg-white focus:border-[#D4AF37]/40 rounded-2xl text-sm font-semibold text-[#111] outline-none transition-all p-4" 
+              required 
+            />
+
+            <div className="flex gap-2 w-full">
               <button
                 type="submit"
                 disabled={loading}
-                className="bg-black text-white rounded-2xl px-6 py-4 font-semibold flex-1"
+                className="bg-[#111] text-[#D4AF37] rounded-2xl px-6 py-4 font-bold flex-1 hover:bg-black transition-colors shadow-lg disabled:opacity-70 text-sm"
               >
                 {loading
                   ? "Saving..."
@@ -219,8 +240,11 @@ const Expenses = () => {
                     setEditId(null);
                     setTitle("");
                     setAmount("");
+                    const d = new Date();
+                    const offset = d.getTimezoneOffset() * 60000;
+                    setExpenseDate(new Date(d.getTime() - offset).toISOString().split('T')[0]);
                   }}
-                  className="bg-gray-200 text-black rounded-2xl px-6 py-4 font-semibold flex-1 hover:bg-gray-300 transition-colors"
+                  className="bg-gray-100 text-gray-600 rounded-2xl px-6 py-4 font-bold flex-1 hover:bg-gray-200 transition-colors text-sm"
                 >
                   Cancel
                 </button>
@@ -292,7 +316,9 @@ const Expenses = () => {
 
                       <td className="p-4">
                         {
-                          expense.date
+                          expense.expenseDate
+                            ? expense.expenseDate.split('-').reverse().join('/')
+                            : expense.date
                         }
                       </td>
 
