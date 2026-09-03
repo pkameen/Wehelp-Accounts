@@ -43,8 +43,8 @@ const Settings = () => {
   const [savingPrefs, setSavingPrefs] = useState(false);
 
   // States
-  const [businessProfile, setBusinessProfile] = useState({
-    businessName: "WEHELP ABAYA",
+  const [businessProfile, setBusinessProfile] = useState({ 
+    businessName: "Ajeer Graphy",
     ownerName: "",
     mobileNumber: "",
     whatsappNumber: "",

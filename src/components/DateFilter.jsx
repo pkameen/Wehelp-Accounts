@@ -6,7 +6,7 @@ export default function DateFilter({
   startDate,
   setStartDate,
   endDate,
-  setEndDate
+  setEndDate 
 }) {
   const options = [
     { id: "today", label: "Today" },

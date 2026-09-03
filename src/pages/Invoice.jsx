@@ -18,7 +18,7 @@ import {
   FiShare2,
   FiClock
 } from "react-icons/fi";
-import logoIcon from '../assets/Logo with Font.jpg'; 
+import logoIcon from '../assets/caligraphy.logo.jpeg';  
 
 const containerVariants = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.1 } } };
 const itemVariants = { hidden: { y: 20, opacity: 0 }, show: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 300, damping: 24 } } };
@@ -406,7 +406,7 @@ useEffect(() => {
     
     const offsetX = (pdfWidth - imgWidth) / 2;
     pdf.addImage(data, "PNG", offsetX, 0, imgWidth, imgHeight);
-    pdf.save(`WEHELP_Invoice_${invoiceNumber}.pdf`);
+    pdf.save(`Ajeer_Graphy_Invoice_${invoiceNumber}.pdf`);
   };
 
   return (
@@ -417,7 +417,7 @@ useEffect(() => {
       <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="mb-10 flex justify-between items-end">
         <div>
           <h1 className="text-4xl font-bold text-[#111] tracking-tight">Billing & Invoice</h1>
-          <p className="text-gray-500 mt-2 font-medium">Create premium invoices, manage stock, and generate professional customer billing for WEHELP ABAYA.</p>
+          <p className="text-gray-500 mt-2 font-medium">Create premium invoices, manage stock, and generate professional customer billing for Ajeer Graphy.</p>
         </div>
       </motion.div>
 

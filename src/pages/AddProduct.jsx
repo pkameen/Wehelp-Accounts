@@ -134,7 +134,7 @@ const AddProduct = () => {
               <label className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 block">Product Name *</label>
               <div className="relative flex items-center">
                 <FiPackage className="absolute left-4 text-gray-400 group-focus-within/input:text-[#D4AF37] transition-colors" />
-                <input type="text" name="productName" placeholder="e.g. Premium Bedoon Essm Niqab" value={product.productName} onChange={handleChange} className="w-full bg-gray-50/80 hover:bg-gray-100/50 border border-transparent focus:bg-white focus:border-[#D4AF37]/40 rounded-2xl text-sm font-semibold text-[#111] outline-none transition-all p-4 pl-11" required />
+                <input type="text" name="productName" placeholder="e.g. Premium Caligraphy Products " value={product.productName} onChange={handleChange} className="w-full bg-gray-50/80 hover:bg-gray-100/50 border border-transparent focus:bg-white focus:border-[#D4AF37]/40 rounded-2xl text-sm font-semibold text-[#111] outline-none transition-all p-4 pl-11" required />
               </div>
             </div>
 

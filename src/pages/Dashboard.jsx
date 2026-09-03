@@ -234,7 +234,7 @@ const Dashboard = () => {
       <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="mb-10">
         <div>
           <h1 className="text-4xl font-bold text-[#111] tracking-tight">Overview</h1>
-          <p className="text-gray-500 mt-2 font-medium">WEHELP ABAYA</p> 
+          <p className="text-gray-500 mt-2 font-medium">Ajeer Graphy</p> 
         </div>
       </motion.div>
 

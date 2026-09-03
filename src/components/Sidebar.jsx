@@ -4,7 +4,7 @@ import {
   FiPieChart, FiShoppingBag, FiPlus, 
   FiFileText, FiDollarSign, FiSettings, FiX
 } from "react-icons/fi";
-import logoIcon from '../assets/wehelp.logo.png';
+import logoIcon from '../assets/caligraphy.logo.jpeg'; 
 
 const navItems = [
   { name: "Dashboard", path: "/dashboard", icon: <FiPieChart /> },
@@ -39,7 +39,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
               <img src={logoIcon} alt="Logo" className="w-10 h-10 object-contain filter invert opacity-90 group-hover:scale-110 transition-transform duration-500" />
             </div>
             <div className="flex flex-col justify-center">
-              <h2 className="text-white font-bold tracking-[0.10em] text-[20px] mt-3.5   whitespace-nowrap leading-none font-['Poppins']">WEHELP ABAYA</h2>
+              <h2 className="text-white font-bold tracking-[0.10em] text-[20px] mt-3.5   whitespace-nowrap leading-none font-['Poppins']">Ajeer Graphy</h2>
               <p className="text-[#D4AF37] text-[9px] tracking-[0.63em] uppercase mt-1 font-bold">Accounts System</p>
             </div>
           </div>
